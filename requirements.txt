@@ -1,0 +1,7 @@
+jupyter
+matplotlib
+scipy
+imutils
+dlib
+opencv-python
+pygame

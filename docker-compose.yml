@@ -1,0 +1,24 @@
+version: '3'
+    
+services:
+ 
+   jupyter:
+     image: computer-vision:latest
+     container_name: computer-vision
+     build:
+      context: .
+      dockerfile: Dockerfile
+     environment:
+       - DISPLAY=unix$DISPLAY
+     ports:
+       - "8888:8888"     
+     command: /bin/bash -c "jupyter notebook --allow-root --notebook-dir=/opt/notebooks --ip='0.0.0.0' --port=8888 --no-browser --NotebookApp.token=''"
+     volumes:
+       - ./notebooks:/opt/notebooks
+       - /dev/video0:/dev/video0
+       - /dev/video1:/dev/video1       
+       - /tmp/.X11-unix:/tmp/.X11-unix
+       - /dev/snd:/dev/snd
+     privileged: true
+     
+
